@@ -792,7 +792,6 @@ function handleForm(event) {
         InsuredInformation["PhoneNumber"] = field_mobileNum;
         InsuredInformation["EmailAddress"] = field_emailAddress;
         InsuredInformation["HomeAddress"] = field_homeAddress;
-        InsuredInformation["InjuryDetails"] = field_injury;
         InsuredInformation["DateOfSymtomps"] = field_DOA;
         InsuredInformation["RootCauseDate"] = field_TOA;
         InsuredInformation["DoctorVisitDate"] = field_POA;
