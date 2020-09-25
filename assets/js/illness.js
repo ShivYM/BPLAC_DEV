@@ -782,6 +782,36 @@ function handleForm(event) {
         /* $('#requirements')[0].scrollIntoView(true); */
 
         console.log("Data -> ", data);
+
+        InsuredInformation["FirstName"] = field_firstName;
+        InsuredInformation["MiddleName"] = field_middleName;
+        InsuredInformation["LastName"] = field_lastName;
+        InsuredInformation["Suffix"] = field_lastName_Suffix;
+        InsuredInformation["DateOfBirth"] = field_DOB;
+        InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
+        InsuredInformation["PhoneNumber"] = field_mobileNum;
+        InsuredInformation["EmailAddress"] = field_emailAddress;
+        InsuredInformation["HomeAddress"] = field_homeAddress;
+        InsuredInformation["InjuryDetails"] = field_injury;
+        InsuredInformation["DateOfSymtomps"] = field_DOA;
+        InsuredInformation["RootCauseDate"] = field_TOA;
+        InsuredInformation["DoctorVisitDate"] = field_POA;
+        InsuredInformation["medicalConsultation"] = field_MedicalConsultation;
+
+        let stageOneData = {
+            stageOne: true,
+            type: "Accident",
+            referenceNumber: referenceNumber,
+            data: InsuredInformation
+        }
+        window.parent.postMessage(JSON.stringify({
+            event_code: 'ym-client-event', data: JSON.stringify({
+                event: {
+                    code: "personalinfo",
+                    data: JSON.stringify(stageOneData)
+                }
+            })
+        }), '*');
     } else {
         $("#popUp").modal("show");
     }
@@ -1321,11 +1351,11 @@ function handleAccountInfo(event) {
         BankDetails["AccountName"] = field_AccountName;
         BankDetails["AccountNumber"] = field_AccountNumber;
         BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
-    
+
         let filesObject = {};
         filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
         filesObject["FileList"] = filesList;
-    
+
         // filesMap["Accident"] = accident
         finalPayload["BasicInformation"] = basicInformation;
         finalPayload["InsuredInformation"] = InsuredInformation;
@@ -1333,16 +1363,16 @@ function handleAccountInfo(event) {
         finalPayload["FileList"] = filesObject;
         finalPayload["stageThree"] = true;
         finalPayload["referenceNumber"] = referenceNumber;
-    
+
         console.log("FPB : ")
         console.log(finalPayload)
         window.parent.postMessage(JSON.stringify({
-          event_code: 'ym-client-event', data: JSON.stringify({
-            event: {
-              code: "finalEvent",
-              data: JSON.stringify(finalPayload)
-            }
-          })
+            event_code: 'ym-client-event', data: JSON.stringify({
+                event: {
+                    code: "finalEvent",
+                    data: JSON.stringify(finalPayload)
+                }
+            })
         }), '*');
     } else {
         $('#popUp').modal('show');
