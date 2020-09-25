@@ -38,7 +38,7 @@ let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, off
 let file1Buffer, file2Buffer, file3Buffer, file4Buffer, file5Buffer, file6Buffer, file7Buffer, file8Buffer;
 basicInformation["CompanyCode"] = "PAL/BPLAC";
 basicInformation["Claim Type "] = "LIVING";
-basicInformation["CauseOfLoss"] = "Accident";
+basicInformation["CauseOfLoss"] = "Illness";
 
 /* document.addEventListener('DOMContentLoaded', function () {
     stepperFormEl = document.querySelector('#stepperForm')
