@@ -847,7 +847,7 @@ function handleForm(event) {
     $("#step2>div").addClass("active");
     $('#requirements').show();
     /*  $('#requirements')[0].scrollIntoView(true); */
-      $("#customer_Name").text(`Hi ${field_firstName}, Hang in there as we are now processing your request. Kindly expect an SMS update from us within 1 to 2 working days on the status of your request.`);
+      $("#customer_Name").text(`Hi ${field_firstName}. Hang in there as we process your request. Expect an SMS from us within 1 to 2 WD on the status of your request.`);
     console.log('Data -> ', data)
 
     InsuredInformation["FirstName"] = field_firstName;
@@ -927,6 +927,7 @@ const proceedScan = async (fileObj, button, pageid) => {
         $(`#file_loader_icon_${button}`).hide();
         $(`#file_Upload_Tick_${button}`).show();
         $(`#file_upload_cancle_${button}`).hide();
+        $('#upload_feedback_label').hide();
         return;
       }
     })
@@ -1521,6 +1522,9 @@ function handleAccountInfo(event) {
   if (!file6.value) {
     $('#upload_feedback_label').show();
     $('#upload_feedback_label').text('Please upload your Bank Account Ownership');
+  }else{
+    $('#upload_feedback_label').hide();
+    $('#upload_feedback_label').text('');
   }
 
   if (
@@ -1581,7 +1585,7 @@ function handleAccountInfo(event) {
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+    /* $("#step3").addClass("done"); */
     $("#account_details").hide();
     $("#process_confirmation").show();
     console.log("Data -> ", data);
@@ -1636,7 +1640,7 @@ function pickup_Bpi() {
   $("#step2").addClass("done");
   $("#step3").addClass("active");
   $("#step3>div").addClass("active");
-  $("#step3").addClass("done");
+ /*  $("#step3").addClass("done"); */
 }
 
 function addBank(event) {
@@ -1731,7 +1735,7 @@ function handleAddBankInfo(event) {
 
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
+    /* $("#step3").addClass("done"); */
     $('#account_details1').hide();
     $('#process_confirmation').show();
     console.log('bank data -> ', data)
@@ -1799,4 +1803,31 @@ function stringlength(inputtxt, minlength, maxlength) {
   else {
     return true;
   }
+}
+
+
+function goBack() {
+  console.log('go back!!!');
+  $("#step2").removeClass("active");
+  $("#step2>div").removeClass("active");
+  $("#step2").removeClass("done");
+  $('#requirements').hide();
+  $('#form_wrapper').show();
+  /* $('#form_wrapper')[0].scrollIntoView(true); */
+}
+
+function goBackPickup(){
+  $("#step3").removeClass("done");
+    $('#pickUp').hide();
+    $('#requirements').show();
+}
+
+function goBack1() {
+  console.log('go back!!!');
+    $("#step3").removeClass("done");
+    $('#account_details').hide();
+    $('#requirements').show();
+  
+ 
+  /* $('#form_wrapper')[0].scrollIntoView(true); */
 }

@@ -38,7 +38,7 @@ let claimType, causeOfLoss, govIdFront, govIdBack, apsFile, narrationReport, off
 let file1Buffer, file2Buffer, file3Buffer, file4Buffer, file5Buffer, file6Buffer, file7Buffer, file8Buffer;
 basicInformation["CompanyCode"] = "PAL/BPLAC";
 basicInformation["Claim Type "] = "LIVING";
-basicInformation["CauseOfLoss"] = "Illness";
+basicInformation["CauseOfLoss"] = "Accident";
 
 /* document.addEventListener('DOMContentLoaded', function () {
     stepperFormEl = document.querySelector('#stepperForm')
@@ -778,39 +778,10 @@ function handleForm(event) {
         $("#step2").addClass("active");
         $("#step2>div").addClass("active");
         $("#requirements").show();
-        $("#customer_Name").text(`Hi ${field_firstName}. Hang in there as we process your request. Expect an SMS from us within 1 to 2 working days on the status of your request.`);
+    $("#customer_Name").text(`Hi ${field_firstName}. Hang in there as we process your request. Expect an SMS from us within 1 to 2 WD on the status of your request.`);
         /* $('#requirements')[0].scrollIntoView(true); */
 
         console.log("Data -> ", data);
-
-        InsuredInformation["FirstName"] = field_firstName;
-        InsuredInformation["MiddleName"] = field_middleName;
-        InsuredInformation["LastName"] = field_lastName;
-        InsuredInformation["Suffix"] = field_lastName_Suffix;
-        InsuredInformation["DateOfBirth"] = field_DOB;
-        InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
-        InsuredInformation["PhoneNumber"] = field_mobileNum;
-        InsuredInformation["EmailAddress"] = field_emailAddress;
-        InsuredInformation["HomeAddress"] = field_homeAddress;
-        InsuredInformation["DateOfSymtomps"] = field_DOA;
-        InsuredInformation["RootCauseDate"] = field_TOA;
-        InsuredInformation["DoctorVisitDate"] = field_POA;
-        InsuredInformation["medicalConsultation"] = field_MedicalConsultation;
-
-        let stageOneData = {
-            stageOne: true,
-            type: "Accident",
-            referenceNumber: referenceNumber,
-            data: InsuredInformation
-        }
-        window.parent.postMessage(JSON.stringify({
-            event_code: 'ym-client-event', data: JSON.stringify({
-                event: {
-                    code: "personalinfo",
-                    data: JSON.stringify(stageOneData)
-                }
-            })
-        }), '*');
     } else {
         $("#popUp").modal("show");
     }
@@ -867,6 +838,7 @@ const proceedScan = async (fileObj, button, pageid) => {
                 $(`#file_loader_icon_${button}`).hide();
                 $(`#file_Upload_Tick_${button}`).show();
                 $(`#file_upload_cancle_${button}`).hide();
+                $('#upload_feedback_label').hide();
                 return;
             }
         })
@@ -1340,7 +1312,7 @@ function handleAccountInfo(event) {
         $("#step2").addClass("done");
         $("#step3").addClass("active");
         $("#step3>div").addClass("active");
-        $("#step3").addClass("done");
+        /* $("#step3").addClass("done"); */
         $('#account_details').hide();
         $('#process_confirmation').show();
         console.log('Data -> ', data)
@@ -1350,11 +1322,11 @@ function handleAccountInfo(event) {
         BankDetails["AccountName"] = field_AccountName;
         BankDetails["AccountNumber"] = field_AccountNumber;
         BankDetails["AccountCurrency"] = $("select#from_currency option").filter(":selected").val();
-
+    
         let filesObject = {};
         filesObject["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
         filesObject["FileList"] = filesList;
-
+    
         // filesMap["Accident"] = accident
         finalPayload["BasicInformation"] = basicInformation;
         finalPayload["InsuredInformation"] = InsuredInformation;
@@ -1362,16 +1334,16 @@ function handleAccountInfo(event) {
         finalPayload["FileList"] = filesObject;
         finalPayload["stageThree"] = true;
         finalPayload["referenceNumber"] = referenceNumber;
-
+    
         console.log("FPB : ")
         console.log(finalPayload)
         window.parent.postMessage(JSON.stringify({
-            event_code: 'ym-client-event', data: JSON.stringify({
-                event: {
-                    code: "finalEvent",
-                    data: JSON.stringify(finalPayload)
-                }
-            })
+          event_code: 'ym-client-event', data: JSON.stringify({
+            event: {
+              code: "finalEvent",
+              data: JSON.stringify(finalPayload)
+            }
+          })
         }), '*');
     } else {
         $('#popUp').modal('show');
@@ -1400,8 +1372,8 @@ function pickup_Bpi() {
     $("#step2").addClass("done");
     $("#step3").addClass("active");
     $("#step3>div").addClass("active");
-    $("#step3").addClass("done");
-}
+   /*  $("#step3").addClass("done"); */
+  }
 
 
 function openlink() {
@@ -1466,3 +1438,35 @@ function stringlength(inputtxt, minlength, maxlength) {
         return true;
     }
 }
+
+
+
+function goBack() {
+    console.log('go back!!!');
+    $("#step2").removeClass("active");
+    $("#step2>div").removeClass("active");
+    $("#step2").removeClass("done");
+    $('#requirements').hide();
+    $('#form_wrapper').show();
+    /* $('#form_wrapper')[0].scrollIntoView(true); */
+  }
+  
+  function goBackPickup() {
+    console.log('go back!!!');
+    $("#step3").removeClass("active");
+    $("#step3>div").removeClass("active"); 
+   /*  $("#step3").removeClass("done"); */
+    $('#pickUp').hide();
+    $('#requirements').show();
+  }
+
+  
+function goBack1() {
+    console.log('go back!!!');
+    $("#step3").removeClass("active");
+    $("#step3>div").removeClass("active"); 
+   /*  $("#step3").removeClass("done"); */
+    $('#account_details').hide();
+    $('#requirements').show();
+    /* $('#form_wrapper')[0].scrollIntoView(true); */
+  }
