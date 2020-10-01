@@ -2637,6 +2637,15 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_7: file7.value
         }
+        let beneficiaryAccount = {};
+        beneficiaryAccount["BeneficiaryNo"] = beneficiaryCount,
+            beneficiaryAccount["BankName"] = field_Bank,
+            beneficiaryAccount["BankBranch"] = field_Branch,
+            beneficiaryAccount["AccountNumber"] = field_AccountNumber,
+            beneficiaryAccount["AccountName"] = field_AccountName,
+            beneficiaryAccount["AccountCurrency"] = $("select#from_currency option").filter(":selected").val(),
+
+            BankDetailsList.push(beneficiaryAccount);
         $("#step1").addClass("done");
         $("#step2").addClass("active");
         $("#step2>div").addClass("active");
