@@ -47,6 +47,73 @@ basicInformation["CauseOfLoss"] = "Accident";
     })
 }) */
 
+function myDisable() {
+    document.getElementById("submit9").disabled = true;
+    document.getElementById("submit9").style.cursor = "no-drop";
+    document.getElementById("field_AccountName"). disabled = true; 
+    document.getElementById("field_AccountName").style.cursor = "no-drop";
+    document.getElementById("field_AccountNumber").disabled = true;  
+    document.getElementById("field_AccountNumber").style.cursor = "no-drop";
+    document.getElementById("field_Bank").disabled = true;
+    document.getElementById("field_Bank").style.cursor = "no-drop";
+    document.getElementById("field_Branch").disabled = true;
+    document.getElementById("field_Branch").style.cursor = "no-drop";
+    document.getElementById("from_currency").disabled = true;
+    document.getElementById("from_currency").style.cursor = "no-drop";
+    document.getElementById("proof_BAO").disabled = true;
+    document.getElementById("proof_BAO").style.cursor = "no-drop";
+    document.getElementById("back_btn1").style.cursor = "no-drop";
+    document.getElementById("back_btn1").style.pointerEvents = "none";
+    document.getElementById("bank_form").style.cursor = "no-drop";
+  }
+
+function timer() {
+    var random = Math.floor(Math.random() * 5) + 1  
+    return new Promise((resolve, reject) => {
+      var i=0
+      let cleartime = setInterval(() => {
+       i = random + i;
+       renderProgress(i)
+       if(i == 99){
+        i = 100;
+        renderProgress(i)
+       }
+       if(i == 100 )  {
+     
+          console.log("cleartime");
+          clearTimeout(cleartime);
+          resolve("cleartime")
+      }
+    //  i++;
+     }, 500);
+    })
+  }
+  
+  function renderProgress(progress) {
+    progress = Math.floor(progress);
+    if(progress<25){
+        var angle = -90 + (progress/100)*360;
+        $(".animate-0-25-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=25 && progress<50){
+        var angle = -90 + ((progress-25)/100)*360;
+        $(".animate-0-25-b").css("transform","rotate(0deg)");
+        $(".animate-25-50-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=50 && progress<75){
+        var angle = -90 + ((progress-50)/100)*360;
+        $(".animate-25-50-b, .animate-0-25-b").css("transform","rotate(0deg)");
+        $(".animate-50-75-b").css("transform","rotate("+angle+"deg)");
+    }
+    else if(progress>=75 && progress<=100){
+        var angle = -90 + ((progress-75)/100)*360;
+        $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+                                            .css("transform","rotate(0deg)");
+        $(".animate-75-100-b").css("transform","rotate("+angle+"deg)");
+    }
+    $(".text").html(progress+"%");
+  }
+  
 
 $(document).ready(function (event) {
     disableFutureDates();
@@ -817,13 +884,13 @@ const proceedScan = async (fileObj, button, pageid) => {
                 if (pageid == 1) {
                     $("#warning_parent").show();
                     $("#upload_warning").text(
-                        "We detected a virus/malware in your uploaded documents. Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
                 if (pageid == 2) {
                     $("#warning_parent_acct").show();
                     $("#upload_warning_acct").text(
-                        "We detected a virus/malware in your uploaded documents. Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
 
@@ -873,13 +940,13 @@ const fileCheck = (file, button, pageid) => {
         if (this.width < 400 && this.height < 400) {
             if (pageid == 1) {
                 $(`#warning_parent`).show();
-                $("#upload_warning").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
 
             if (pageid == 2) {
                 $('#warning_parent_acct').show();
-                $("#upload_warning_acct").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
 
@@ -950,7 +1017,7 @@ file1.onchange = async function (e) {
                 $("#file_Upload_Tick_1").hide();
                 $("#file_upload_cancle_1").show();
                 $("#upload_warning").text(
-                    "The file size of your documents should not be larger than 2MB. Please re-upload the correct file size to proceed."
+                    "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
                 );
             }
             break;
@@ -959,7 +1026,7 @@ file1.onchange = async function (e) {
             $("#file_Upload_Tick_1").hide();
             $("#file_upload_cancle_1").show();
             $("#upload_warning").text(
-                "Your documents should only be in .jpg, pdf formats and should not be larger than 2MB. Please re-upload in the correct format and file size to proceed. "
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed. "
             );
             this.value = "";
     }
@@ -1007,7 +1074,7 @@ file2.onchange = async function (e) {
                 $("#file_Upload_Tick_2").hide();
                 $("#file_upload_cancle_2").show();
                 $("#upload_warning").text(
-                    "The file size of your documents should not be larger than 2MB. Please re-upload the correct file size to proceed."
+                    "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
                 );
             }
             break;
@@ -1016,7 +1083,7 @@ file2.onchange = async function (e) {
             $("#file_Upload_Tick_2").hide();
             $("#file_upload_cancle_2").show();
             $("#upload_warning").text(
-                "Your documents should only be in .jpg, pdf formats and should not be larger than 2MB. Please re-upload in the correct format and file size to proceed. "
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed. "
             );
             this.value = "";
     }
@@ -1063,7 +1130,7 @@ file3.onchange = async function (e) {
                 $("#file_Upload_Tick_3").hide();
                 $("#file_upload_cancle_3").show();
                 $("#upload_warning").text(
-                    "The file size of your documents should not be larger than 2MB. Please re-upload the correct file size to proceed."
+                    "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
                 );
             }
             break;
@@ -1072,7 +1139,7 @@ file3.onchange = async function (e) {
             $("#file_Upload_Tick_3").hide();
             $("#file_upload_cancle_3").show();
             $("#upload_warning").text(
-                "Your documents should only be in .jpg, pdf formats and should not be larger than 2MB. Please re-upload in the correct format and file size to proceed. "
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed. "
             );
             this.value = "";
     }
@@ -1119,7 +1186,7 @@ file5.onchange = async function (e) {
                 $("#file_Upload_Tick_5").hide();
                 $("#file_upload_cancle_5").show();
                 $("#upload_warning").text(
-                    "The file size of your documents should not be larger than 2MB. Please re-upload the correct file size to proceed."
+                    "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
                 );
             }
             break;
@@ -1128,7 +1195,7 @@ file5.onchange = async function (e) {
             $("#file_Upload_Tick_5").hide();
             $("#file_upload_cancle_5").show();
             $("#upload_warning").text(
-                "Your documents should only be in .jpg, pdf formats and should not be larger than 2MB. Please re-upload in the correct format and file size to proceed. "
+                "You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed. "
             );
             this.value = "";
     }
@@ -1158,7 +1225,7 @@ file6.onchange = async function (e) {
                 $("#file_Upload_Tick_6").hide();
                 $("#file_upload_cancle_6").show();
                 $("#upload_warning_acct").text(
-                    "The file size of your documents should not be larger than 2MB. Please re-upload the correct file size to proceed."
+                    "You may only upload documents not exceeding 2MB in file size to proceed. Please re-upload the correct file size to proceed."
                 );
             }
             break;
@@ -1167,7 +1234,7 @@ file6.onchange = async function (e) {
             $("#file_Upload_Tick_6").hide();
             $("#file_upload_cancle_6").show();
             $("#upload_warning_acct").text(
-                " Your documents should only be in .jpg, pdf formats and should not be larger than 2MB. Please re-upload in the correct format and file size to proceed."
+                " You may only upload documents that are in .jpg, .pdf formats and must not exceed 2MB in file size. Please re-upload in the correct format and file size to proceed."
             );
             this.value = "";
     }
@@ -1309,9 +1376,11 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_6: file6.value
         }
+        myDisable()
+        timer().then( async () => { 
         $("#step2").addClass("done");
-        $("#step3").addClass("active");
-        $("#step3>div").addClass("active");
+      /*   $("#step3").addClass("active");
+        $("#step3>div").addClass("active"); */
         /* $("#step3").addClass("done"); */
         $('#account_details').hide();
         $('#process_confirmation').show();
@@ -1345,6 +1414,7 @@ function handleAccountInfo(event) {
             }
           })
         }), '*');
+    }); 
     } else {
         $('#popUp').modal('show');
     }
@@ -1370,8 +1440,8 @@ function pickup_Bpi() {
     $("#pickUp").hide();
     $('#process_confirmation').show();
     $("#step2").addClass("done");
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
+   /*  $("#step3").addClass("active");
+    $("#step3>div").addClass("active"); */
    /*  $("#step3").addClass("done"); */
   }
 

@@ -56,6 +56,123 @@ $(document).ready(function (event) {
     setCountryCode();
 });
 
+function myDisable() {
+    document.getElementById("submit9").disabled = true;
+    document.getElementById("submit9").style.cursor = "no-drop";
+    document.getElementById("file_Upload_1").disabled = true;
+    document.getElementById("file_Upload_1").style.cursor = "no-drop";
+    document.getElementById("file_Upload_2").disabled = true;
+    document.getElementById("file_Upload_2").style.cursor = "no-drop";
+    document.getElementById("file_Upload_3").disabled = true;
+    document.getElementById("file_Upload_3").style.cursor = "no-drop";
+    document.getElementById("file_Upload_4").disabled = true;
+    document.getElementById("file_Upload_4").style.cursor = "no-drop";
+    document.getElementById("file_Upload_5").disabled = true;
+    document.getElementById("file_Upload_5").style.cursor = "no-drop";
+    document.getElementById("file_Upload_6").disabled = true;
+    document.getElementById("file_Upload_6").style.cursor = "no-drop";
+    document.getElementById("addBeneficiary1").disabled = true;
+    document.getElementById("addBeneficiary1").style.cursor = "no-drop";
+    document.getElementById("upload_invalidCheck_2").disabled = true;
+    document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop";
+    /*  document.getElementById("link_Beneficiary").style.pointerEvents = "none";
+     document.getElementById("link2_Beneficiary").style.pointerEvents = "none"; */
+    document.getElementById("form_Beneficiary").style.cursor = "no-drop";
+}
+
+function timer() {
+    var random = Math.floor(Math.random() * 5) + 1
+    return new Promise((resolve, reject) => {
+        var i = 0
+        let cleartime = setInterval(() => {
+            i = random + i;
+            renderProgress(i)
+            if (i == 99) {
+                i = 100;
+                renderProgress(i)
+            }
+            if (i == 100) {
+
+                console.log("cleartime");
+                clearTimeout(cleartime);
+                resolve("cleartime")
+            }
+            //  i++;
+        }, 500);
+    })
+}
+
+function myDisable2() {
+    document.getElementById("submit10").disabled = true;
+    document.getElementById("submit10").style.cursor = "no-drop";
+    document.getElementById("file_Upload_9").disabled = true;
+    document.getElementById("file_Upload_9").style.cursor = "no-drop";
+    document.getElementById("file_Upload_10").disabled = true;
+    document.getElementById("file_Upload_10").style.cursor = "no-drop";
+    document.getElementById("file_Upload_11").disabled = true;
+    document.getElementById("file_Upload_11").style.cursor = "no-drop";
+    document.getElementById("file_Upload_12").disabled = true;
+    document.getElementById("file_Upload_12").style.cursor = "no-drop";
+    document.getElementById("addBeneficiary_submit").disabled = true;
+    document.getElementById("addBeneficiary_submit").style.cursor = "no-drop";
+
+    /*   document.getElementById("upload_invalidCheck_2").disabled = true;
+      document.getElementById("upload_invalidCheck_2").style.cursor = "no-drop"; 
+      document.getElementById("link_Beneficiary").style.pointerEvents = "none";
+      document.getElementById("link2_Beneficiary").style.pointerEvents = "none";
+      document.getElementById("form_Beneficiary").style.cursor = "no-drop"; */
+}
+
+function timer2() {
+    var random = Math.floor(Math.random() * 5) + 1
+    return new Promise((resolve, reject) => {
+        var i = 0
+        let cleartime = setInterval(() => {
+            i = 3 + i;
+            renderProgress(i)
+            if (i == 99) {
+                i = 100;
+                renderProgress(i)
+            }
+            if (i == 100) {
+
+                console.log("cleartime");
+                clearTimeout(cleartime);
+                resolve("cleartime")
+            }
+            //  i++;
+        }, 500);
+    })
+}
+
+function renderProgress(progress) {
+    progress = Math.floor(progress);
+    if (progress < 25) {
+        var angle = -90 + (progress / 100) * 360;
+        $(".animate-0-25-b").css("transform", "rotate(" + angle + "deg)");
+    }
+    else if (progress >= 25 && progress < 50) {
+        var angle = -90 + ((progress - 25) / 100) * 360;
+        $(".animate-0-25-b").css("transform", "rotate(0deg)");
+        $(".animate-25-50-b").css("transform", "rotate(" + angle + "deg)");
+    }
+    else if (progress >= 50 && progress < 75) {
+        var angle = -90 + ((progress - 50) / 100) * 360;
+        $(".animate-25-50-b, .animate-0-25-b").css("transform", "rotate(0deg)");
+        $(".animate-50-75-b").css("transform", "rotate(" + angle + "deg)");
+    }
+    else if (progress >= 75 && progress <= 100) {
+        var angle = -90 + ((progress - 75) / 100) * 360;
+        $(".animate-50-75-b, .animate-25-50-b, .animate-0-25-b")
+            .css("transform", "rotate(0deg)");
+        $(".animate-75-100-b").css("transform", "rotate(" + angle + "deg)");
+    }
+    $(".text").html(progress + "%");
+}
+
+
+
+
 /* Check Date should not be in future */
 function futureDate(date) {
     /*   let id = evt.target.id;
@@ -1218,7 +1335,7 @@ function handleForm(event) {
             beneficiary["Relationship"] = field_BeneficiaryRelationToDeceased,
             beneficiary["DocumentFolder"] = `/home/accounts/Claims/${referenceNumber}`,
             beneficiary["PayoutOption"] = "CTA"
-            beneficiary["Occupation"] = field_BenificiaryOccupation
+        beneficiary["Occupation"] = field_BenificiaryOccupation
         BeneficiaryList.push(beneficiary);
 
         dataReset("field_firstName", "field_firstName", "field_middleName", "field_lastName", "field_lastName_Suffix", "field_DOB", "field_DOID", "field_BeneficiaryFirstName", "field_BeneficiaryMiddleName", "field_BeneficiaryLastName", "field_BeneficiaryMobileNum", "field_BeneficiaryEmailAddress", "field_BeneficiaryHomeAddress", "field_BeneficiaryDOB", "field_BeneficiaryPOB", "field_BeneficiaryNationality", "field_BeneficiarySex", "field_BeneficiaryRelationToDeceased", "field_Beneficiary_relatives1", "field_Beneficiary_relatives2")
@@ -1308,25 +1425,25 @@ const proceedScan = async (fileObj, button, pageid) => {
                 if (pageid == 1) {
                     $("#warning_parent").show();
                     $("#upload_warning").text(
-                        "We detected a virus/malware in your uploaded documents.Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
                 if (pageid == 2) {
                     $("#warning_parent_acct").show();
                     $("#upload_warning_acct").text(
-                        "We detected a virus/malware in your uploaded documents.Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
                 if (pageid == 3) {
                     $("#warning_parent_addBeneficiaryacct").show();
                     $("#upload_warning_addBeneficiaryacct").text(
-                        "We detected a virus/malware in your uploaded documents.Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
                 if (pageid == 4) {
                     $("#warning_parent_addBeneficiary").show();
                     $("#addBeneficiary_upload_warning").text(
-                        "We detected a virus/malware in your uploaded documents.Please re-upload clean, virus-free documents to proceed."
+                        "Warning : We detected a virus/malware in your uploaded documents. Please re-upload a clean, virus-free document to proceed."
                     );
                 }
 
@@ -1398,22 +1515,22 @@ const fileCheck = (file, button, pageid) => {
 
             if (pageid == 1) {
                 $(`#warning_parent`).show();
-                $("#upload_warning").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
             if (pageid == 2) {
                 $(`#warning_parent_acct`).show();
-                $("#upload_warning_acct").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#upload_warning_acct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
             if (pageid = 3) {
                 $(`#warning_parent_addBeneficiaryacct`).show();
-                $("#upload_warning_addBeneficiaryacct").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#upload_warning_addBeneficiaryacct").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
             if (pageid = 4) {
                 $(`#warning_parent_addBeneficiary`).show();
-                $("#addBeneficiary_upload_warning").text("Sorry, we noticed that your uploaded documents are unreadable. Please re-upload a clearer copy of your documents to proceed.");
+                $("#addBeneficiary_upload_warning").text("We noticed that your uploaded documents are unclear and unreadable.Please re-upload a clearer copy of your document to proceed.");
                 console.log("Image is bad");
             }
 
@@ -1466,10 +1583,10 @@ file1.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1522,10 +1639,10 @@ file2.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1577,10 +1694,10 @@ file3.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1632,10 +1749,10 @@ file4.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1687,10 +1804,10 @@ file5.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1742,10 +1859,10 @@ file6.onchange = async function (e) {
 
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount,
-                accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Death certificate of the deceased"
+                    accident['Filename'] = `${fileName}.pdf`,
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Death certificate of the deceased"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -1877,9 +1994,9 @@ file9.onchange = async function (e) {
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount
                 accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Claimants valid Government ID (Front)"
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Claimants valid Government ID (Front)"
 
 
                 filesList.push(accident);
@@ -1932,9 +2049,9 @@ file10.onchange = async function (e) {
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount
                 accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Claimants valid Government ID (Back)"
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Claimants valid Government ID (Back)"
 
 
                 filesList.push(accident);
@@ -1989,9 +2106,9 @@ file11.onchange = async function (e) {
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount
                 accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Marriage Contract"
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Marriage Contract"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -2044,9 +2161,9 @@ file12.onchange = async function (e) {
                 let accident = {};
                 accident['BeneficiaryNo'] = beneficiaryCount
                 accident['Filename'] = `${fileName}.pdf`,
-                accident['DocType'] = "PDF",
-                accident['DocTypeCode'] = docType,
-                accident['DocumentDescription'] = "Marriage Contract"
+                    accident['DocType'] = "PDF",
+                    accident['DocTypeCode'] = docType,
+                    accident['DocumentDescription'] = "Marriage Contract"
 
                 filesList.push(accident);
                 const formData = new FormData()
@@ -2309,13 +2426,17 @@ function buttonSubmitClicked(event) {
         upload_file_6: file6.value,
         insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked')
     }
+    myDisable()
+    timer().then(async () => {
+        $("#step2").addClass("done");
+        /*  $("#step3").addClass("active");
+         $("#step3>div").addClass("active"); */
+        /*  $("#step3").addClass("done"); */
+        $('#requirements').hide();
+        $('#process_confirmation').show();
+        
 
-    $("#step2").addClass("done");
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
-    /*  $("#step3").addClass("done"); */
-    $('#requirements').hide();
-    $('#process_confirmation').show();
+    });
 
     let FilesInformation = {};
     FilesInformation["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
@@ -2388,13 +2509,16 @@ function addBeneficiaryButtonClicked(event) {
         /*  insurance_Checkbox: $('#upload_invalidCheck_2').is(':checked') */
     }
 
-    $("#step2").addClass("done");
-    $("#step3").addClass("active");
-    $("#step3>div").addClass("active");
-    /*  $("#step3").addClass("done"); */
-    $('#addBeneficiaryRequirements').hide();
-    $('#process_confirmation').show();
-    // console.log('upload data --> ', upload_data);
+    myDisable2()
+    timer2().then(async () => {
+        $("#step2").addClass("done");
+        /*  $("#step3").addClass("active");
+         $("#step3>div").addClass("active"); */
+        /*  $("#step3").addClass("done"); */
+        $('#addBeneficiaryRequirements').hide();
+        $('#process_confirmation').show();
+        console.log('upload data --> ', upload_data);
+    });
     let FilesInformation = {};
     FilesInformation["FolderName"] = `/home/accounts/Claims/${referenceNumber}`
     FilesInformation["FileList"] = filesList;
@@ -2508,15 +2632,6 @@ function handleAccountInfo(event) {
             field_Currency: $("select#from_currency option").filter(":selected").val(),
             upload_file_7: file7.value
         }
-        let beneficiaryAccount = {};
-        beneficiaryAccount["BeneficiaryNo"] = beneficiaryCount,
-            beneficiaryAccount["BankName"] = field_Bank,
-            beneficiaryAccount["BankBranch"] = field_Branch,
-            beneficiaryAccount["AccountNumber"] = field_AccountNumber,
-            beneficiaryAccount["AccountName"] = field_AccountNumber,
-            beneficiaryAccount["AccountCurrency"] = $("select#from_currency option").filter(":selected").val(),
-
-            BankDetailsList.push(beneficiaryAccount);
         $("#step1").addClass("done");
         $("#step2").addClass("active");
         $("#step2>div").addClass("active");
@@ -2632,8 +2747,8 @@ function addBenificiaryAccountInfo(event) {
             beneficiaryAccount["AccountCurrency"] = $("select#from_addBeneficiarycurrency option").filter(":selected").val(),
 
             BankDetailsList.push(beneficiaryAccount);
-
         /* accountUploadDataReset(); */
+        
         $("#step1").addClass("done");
         $("#step2").addClass("active");
         $("#step2>div").addClass("active");
@@ -2678,8 +2793,8 @@ function pickUp() {
     let index = BeneficiaryList.findIndex(ele => ele["BeneficiaryNo"] == "1")
     let benObject = BeneficiaryList[index]
     benObject["PayoutOption"] = "PUA";
-    BeneficiaryList[index] = benObject;
-
+    BeneficiaryList[index] = benObject; 
+    
     $('#payment').hide();
     $("#pickUp").show();
     $("#step1").addClass("done");
@@ -2688,10 +2803,6 @@ function pickUp() {
 }
 
 function addBeneficiaryPickup() {
-    let index = BeneficiaryList.findIndex(ele => ele["BeneficiaryNo"] == (beneficiaryCount.toString()))
-    let benObject = BeneficiaryList[index]
-    benObject["PayoutOption"] = "PUA";
-    BeneficiaryList[index] = benObject;
     $('#addBeneficiarypayment').hide();
     $("#addBeneficiaryPickUp").show();
     $("#step2").addClass("active");

@@ -2154,7 +2154,7 @@
 			<section class="jumbotron jumbotron-fluid">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-11 offset-md-1">
+						<div class="col-md-11 offset-md-1 " id="form_Beneficiary">
 							<h3>We would like to extend our deepest sympatheies for your loss.</h3>
 							<br />
 							<p class="font-weight-normal" style="margin: 0 0 .5rem 0;">Please secure and upload clear copies of the necessary requirements below</p>
@@ -2261,8 +2261,8 @@
 											<div class="form-row">
 												<div class="col-12 col-md-12" style="padding: 0; margin: 0;">
 													<div class="form-check">
-														<input class="form-check-input" type="checkbox" value="" id="upload_invalidCheck_2" required>
-														<label class="form-check-label" for="invalidCheck">I certify that all the information and documents submitted here are true and accurate. I also understand that I may be fined double the amount claimed and/or imprisoned for two (2) years for any fraudulent claim made as outlined under <a href="#insurance_code_policy">Section 251 of the Insurance Code</a>
+														<input class="form-check-input"  type="checkbox" value="" id="upload_invalidCheck_2" required>
+														<label class="form-check-label" for="invalidCheck">I certify that all the information and documents submitted here are true and accurate. I also understand that I may be fined double the amount claimed and/or imprisoned for two (2) years for any fraudulent claim made as outlined under <a href="#insurance_code_policy"></a>Section 251 of the Insurance Code</a>
 														</label>
 													</div>
 												</div>
@@ -2274,13 +2274,40 @@
 									<div class="row">
 										<div class="col-12 col-md-6">
 											<p>For multiple beneficiary</p>
-											<button type="submit" onclick="addBeneficiary(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
+											<button type="submit" id="addBeneficiary1" onclick="addBeneficiary(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
 										</div>
                                         <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
                                            <!--  <a href="#" onclick="goBack()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a> -->
 											<div style="width: 50%;">
 												<p>For sole beneficiary</p>
-												<button type="submit" onclick="buttonSubmitClicked(event)" class="btn" style="width: 100%;">Submit</button>
+												<button type="submit" id="submit9" onclick="buttonSubmitClicked(event)" class="btn" style="width: 100%;">Submit
+												
+													<div class="loader1" id="file_loader_icon_9">
+														<div class="loader-bg">
+															<div class="text"></div>
+														</div>        
+														<div class="spiner-holder-one animate-0-25-a">
+															<div class="spiner-holder-two animate-0-25-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-25-50-a">
+															<div class="spiner-holder-two animate-25-50-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-50-75-a">
+															<div class="spiner-holder-two animate-50-75-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-75-100-a">
+															<div class="spiner-holder-two animate-75-100-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+													</div>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -2307,7 +2334,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-11 offset-md-1">
-						<h4>Once your claim is approved, how would you like to receive the benefit?</h4>
+						<h4>If approved, how would you like the amount to be sent to you?</h4>
 						<br />
 						<p class="font-weight-normal">Choose from any of the payout options below.</p>
 						<div class="row" style="justify-content: center;margin: 4rem 0;">
@@ -2342,18 +2369,18 @@
 								<p class="font-weight-normal">If we need additional documents to support your request, we'll reach out to you immediately</p>
 								<br />
 								<p class="font-weight-normal"> If you have any questions regarding your claim request, please send us an email at 
-                                    <a target="_blank" href="mailto:BPI-Philam_CustomerService@aia.com">BPI-Philam_CustomerService@aia.com</a>.
+                                    <a target="_blank" href="mailto:BPIPhilam_CustomerService@aia.com">BPIPhilam_CustomerService@aia.com</a>.
                                      For those in Makati, you may also visit our Vibe
                                      Customer Service Center at BPI-Philam Makati along Ayala Ave. You may also call our
                                      Customer Hotline at (02) 8528-5501.</p>
 							</div>
 							<div class="col-3 time_container">
 								<div>
-									<div class="time_duration reference">
+									<!-- <div class="time_duration reference">
 										<div class="white">Reference Number</div>
 										<div class="font-weight-bold white">89766035</div>
 									</div>
-									<br />
+									<br /> -->
 									<div class="time_duration">
 										<div>Turnaround Time</div>
 										<div class="font-weight-bold">1-2 working days</div>
@@ -4491,7 +4518,7 @@
                             If your request is approved, you can claim your benefit from any BPI or BPI Family Savings Bank branch.
                         </p>
                         <p style="margin: 2rem 0;">
-							You will receive an SMS notification confirming the date of when you can claim your benefit and a Reference Code. Please present this Reference Code and one (1) valid government issues ID to claim your benefit.
+							We will send you an SMS notification confirming the date on when you can claim your benefit as well as a Reference Code and one (1) valid, government-issued IDs at any branch of BPI or BPI Family Savings Bank
                         </p>
                         <div class="col-12 col-md-12" style="margin: 0 0 0 1rem 0;">
                             <div class="row">
@@ -4610,13 +4637,39 @@
 									<div class="row">
 										<div class="col-12 col-md-6">
 											<p>For multiple beneficiary</p>
-											<button type="submit"  onclick="addBeneficiaryNew(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
+											<button type="submit" id="addBeneficiary_submit" onclick="addBeneficiaryNew(event)" class="btn">ADD ANOTHER BENEFICIARY</button>
 										</div>
                                         <div class="col-12 col-md-6" style="display: flex; justify-content: flex-end;"> 
                                            <!--  <a href="#" onclick="goBack()" style="align-self: flex-end; color: #b8123e; padding: 0 1rem; margin: 0 0.5rem;">Back</a> -->
 											<div style="width: 50%;">
 												<p>For sole beneficiary</p>
-												<button type="submit" onclick="addBeneficiaryButtonClicked(event)" class="btn" style="width: 100%;">Submit</button>
+												<button type="submit" id="submit10" onclick="addBeneficiaryButtonClicked(event)" class="btn" style="width: 100%;">Submit
+													<div class="loader1" id="file_loader_icon_9">
+														<div class="loader-bg">
+															<div class="text"></div>
+														</div>        
+														<div class="spiner-holder-one animate-0-25-a">
+															<div class="spiner-holder-two animate-0-25-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-25-50-a">
+															<div class="spiner-holder-two animate-25-50-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-50-75-a">
+															<div class="spiner-holder-two animate-50-75-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+														<div class="spiner-holder-one animate-75-100-a">
+															<div class="spiner-holder-two animate-75-100-b">
+																<div class="loader-spiner"></div>
+															</div>
+														</div>
+													</div>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -4639,7 +4692,7 @@
 							branch.
                         </p>
                         <p style="margin: 2rem 0;">
-							You will receive an SMS notification confirming the date of when you can claim your benefit and a Reference Code. Please present this Reference Code and one (1) valid government issues ID to claim your benefit.
+							We will send you an SMS notification confirming the date on when you can claim your benefit as well as a Reference Code and one (1) valid, government-issued IDs at any branch of BPI or BPI Family Savings Bank
                         </p>
                         <div class="col-12 col-md-12" style="margin: 0 0 0 1rem 0;">
                             <div class="row">
@@ -4664,7 +4717,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-11 offset-md-1">
-						<h4>Once your claim is approved, how would you like to receive the benefit?</h4>
+						<h4>If approved, how would you like the amount to be sent to you?</h4>
 						<br />
 						<p class="font-weight-normal">Choose from any of the payout options below.</p>
 						<div class="row" style="justify-content: center;margin: 4rem 0;">
