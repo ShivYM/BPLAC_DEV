@@ -849,6 +849,35 @@ function handleForm(event) {
         /* $('#requirements')[0].scrollIntoView(true); */
 
         console.log("Data -> ", data);
+
+        InsuredInformation["FirstName"] = field_firstName;
+        InsuredInformation["MiddleName"] = field_middleName;
+        InsuredInformation["LastName"] = field_lastName;
+        InsuredInformation["Suffix"] = field_lastName_Suffix;
+        InsuredInformation["DateOfBirth"] =  field_DOB.split('-')[2]+"/"+field_DOB.split('-')[1]+"/"+field_DOB.split('-')[0];
+        InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
+        InsuredInformation["PhoneNumber"] = field_mobileNum;
+        InsuredInformation["EmailAddress"] = field_emailAddress;
+        InsuredInformation["HomeAddress"] = field_homeAddress;
+        InsuredInformation["DateOfSymtomps"] =  field_DOA.split('-')[2]+"/"+field_DOA.split('-')[1]+"/"+field_DOA.split('-')[0];;
+        InsuredInformation["RootCauseDate"] =  field_TOA.split('-')[2]+"/"+field_TOA.split('-')[1]+"/"+field_TOA.split('-')[0];;
+        InsuredInformation["DoctorVisitDate"] =  field_POA.split('-')[2]+"/"+field_POA.split('-')[1]+"/"+field_POA.split('-')[0];;
+        InsuredInformation["medicalConsultation"] = field_MedicalConsultation;
+
+        let stageOneData = {
+            stageOne: true,
+            type: "Accident",
+            referenceNumber: referenceNumber,
+            data: InsuredInformation
+        }
+        window.parent.postMessage(JSON.stringify({
+            event_code: 'ym-client-event', data: JSON.stringify({
+                event: {
+                    code: "personalinfo",
+                    data: JSON.stringify(stageOneData)
+                }
+            })
+        }), '*');
     } else {
         $("#popUp").modal("show");
     }

@@ -786,7 +786,7 @@ function handleFormAddBeneficiary(event) {
             beneficiary["FirstName"] = field_addBeneficiaryFirstName,
             beneficiary["MiddleName"] = field_addBeneficiaryMiddleName,
             beneficiary["LastName"] = field_addBeneficiaryLastName,
-            beneficiary["DateOfBirth"] = field_addBeneficiaryDOB,
+            beneficiary["DateOfBirth"] = field_addBeneficiaryDOB.split('-')[2]+"/"+field_addBeneficiaryDOB.split('-')[1]+"/"+field_addBeneficiaryDOB.split('-')[0],
             beneficiary["CountryCode"] = $("select#field_addBeneficiaryMobileNumberSelect option").filter(":selected").val(),
             beneficiary["PhoneNumber"] = field_addBeneficiaryMobileNum,
             beneficiary["EmailAddress"] = field_addBeneficiaryEmailAddress,
@@ -1309,22 +1309,25 @@ function handleForm(event) {
             privacy_checkbox: $('#invalidCheck_privacy').is(':checked')
         }
 
+        // field_DOB.split('-');
         InsuredInformation["FirstName"] = field_firstName;
         InsuredInformation["MiddleName"] = field_middleName;
         InsuredInformation["LastName"] = field_lastName;
         InsuredInformation["Suffix"] = field_lastName_Suffix;
-        InsuredInformation["DateOfBirth"] = field_DOB;
-        InsuredInformation["InsuredsDeath"] = field_DOID;
+        InsuredInformation["DateOfBirth"] = field_DOB.split('-')[2]+"/"+field_DOB.split('-')[1]+"/"+field_DOB.split('-')[0];
+        InsuredInformation["InsuredsDeath"] = field_DOID.split('-')[2]+"/"+field_DOID.split('-')[1]+"/"+field_DOID.split('-')[0];
 
         basicInformation["CauseOfLoss"] = field_NatureLoss;
 
         let beneficiary = {};
 
+        //field_Beneficiary_relatives1
+        //field_Beneficiary_relatives2
         beneficiary["BeneficiaryNo"] = beneficiaryCount,
             beneficiary["FirstName"] = field_BeneficiaryFirstName,
             beneficiary["MiddleName"] = field_BeneficiaryMiddleName,
             beneficiary["LastName"] = field_BeneficiaryLastName,
-            beneficiary["DateOfBirth"] = field_BeneficiaryDOB,
+            beneficiary["DateOfBirth"] = field_BeneficiaryDOB.split('-')[2]+"/"+field_BeneficiaryDOB.split('-')[1]+"/"+field_BeneficiaryDOB.split('-')[0],
             beneficiary["CountryCode"] = $("select#field_BeneficiaryMobileNumberSelect option").filter(":selected").val(),
             beneficiary["PhoneNumber"] = field_BeneficiaryMobileNum,
             beneficiary["EmailAddress"] = field_BeneficiaryEmailAddress,
@@ -1334,7 +1337,9 @@ function handleForm(event) {
             beneficiary["Sex"] = $("select#field_BeneficiarySex option").filter(":selected").val(),
             beneficiary["Relationship"] = field_BeneficiaryRelationToDeceased,
             beneficiary["DocumentFolder"] = `/home/accounts/Claims/${referenceNumber}`,
-            beneficiary["PayoutOption"] = "CTA"
+            beneficiary["PayoutOption"] = "CTA",
+            beneficiary["GovernmentOfficial"] = $("select#field_Beneficiary_relatives1 option").filter(":selected").val(),
+            beneficiary["GovernmentOfficialRelative"] = $("select#field_Beneficiary_relatives2 option").filter(":selected").val(),
         beneficiary["Occupation"] = field_BenificiaryOccupation
         BeneficiaryList.push(beneficiary);
 

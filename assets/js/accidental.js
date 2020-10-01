@@ -621,21 +621,6 @@ function handleForm(event) {
 
   var comapareDates = compareFun(field_DOB, field_DOA);
 
-  InsuredInformation["FirstName"] = field_firstName;
-  InsuredInformation["MiddleName"] = field_firstName;
-  InsuredInformation["LastName"] = field_firstName;
-  InsuredInformation["Suffix"] = field_firstName;
-  InsuredInformation["DateOfBirth"] = field_firstName;
-  InsuredInformation["CountryCode"] = field_firstName;
-  InsuredInformation["PhoneNumber"] = field_firstName;
-  InsuredInformation["EmailAddress"] = field_firstName;
-  InsuredInformation["HomeAddress"] = field_firstName;
-  InsuredInformation["InjuryDetails"] = field_firstName;
-  InsuredInformation["AccidentDate"] = field_firstName;
-  InsuredInformation["AccidentTime"] = field_firstName;
-  InsuredInformation["AccidentPlace"] = field_firstName;
-  InsuredInformation["FirstName"] = field_firstName;
-
   var specFirstName = specialcharacterValidation(field_firstName);
   var specMiddleName = specialcharacterValidation(field_middleName);
   var specLastName = specialcharacterValidation(field_lastName);
@@ -928,13 +913,13 @@ function handleForm(event) {
     InsuredInformation["MiddleName"] = field_middleName;
     InsuredInformation["LastName"] = field_lastName;
     InsuredInformation["Suffix"] = field_lastName_Suffix;
-    InsuredInformation["DateOfBirth"] = field_DOB;
+    InsuredInformation["DateOfBirth"] = field_DOB.split('-')[2]+"/"+field_DOB.split('-')[1]+"/"+field_DOB.split('-')[0];;;
     InsuredInformation["CountryCode"] = $("select#inlineFormCustomSelect option").filter(":selected").val();
     InsuredInformation["PhoneNumber"] = field_mobileNum;
     InsuredInformation["EmailAddress"] = field_emailAddress;
     InsuredInformation["HomeAddress"] = field_homeAddress;
     InsuredInformation["InjuryDetails"] = field_injury;
-    InsuredInformation["AccidentDate"] = field_DOA;
+    InsuredInformation["AccidentDate"] = field_DOA.split('-')[2]+"/"+field_DOA.split('-')[1]+"/"+field_DOA.split('-')[0];
     InsuredInformation["AccidentTime"] = field_TOA;
     InsuredInformation["AccidentPlace"] = field_POA;
 
